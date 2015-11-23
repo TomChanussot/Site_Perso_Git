@@ -1,3 +1,6 @@
+<?php
+	include "admin/connection.php";
+?>
 <div class="container">
 	<div id="cvContent" class="row col-xs-11 col-md-10 col-xs-offset-1 sectionContent">
 		<!-- Tabs for CV -->
@@ -21,6 +24,12 @@
 		  		<p>04 74 97 65 83</p>
 		  		<p>06 01 72 35 56</p>
 		  		<p><strong>Statut : en recherche d'emploi</strong></p>
+		  		<a href="https://www.linkedin.com/pub/tom-chanussot/66/730/450" target="_blank">
+					<img width="50px" height="50px" src="resources/images/logo-linkedIn.png" alt="linkedIn"/>
+				</a>
+				<a href="http://fr.viadeo.com/fr/profile/tom.chanussot" target="_blank">
+					<img width="50px" height="50px" src="resources/images/logo-viadeo.jpg" alt="viadeo"/>
+				</a>
 		    </div>
 		    <div id="formations" class="tab-pane fade">
 		        <h2>Formations</h2>
@@ -29,30 +38,42 @@
 				<p><span class="period">Juillet 2010 : </span>Baccalauréat Scientifique (S) option mathématiques au lycée Élie Cartan à la Tour du Pin.</p>
 		    </div>
 		    <div id="competences" class="tab-pane fade">
-		        <h2>Compétences spécifiques</h2>
-		        <ul>
-			        <li>Langages de programmation: C, C++, Java, J2E, HTML, CSS, PHP, JQuery.</li>
-					<li>Utilisation des IDE: Eclipse, Netbeans et du logiciel de subversion SVN.</li>
-					<li>Utilisation des framework: Symfony2 (PHP), Wicket (Java), Vaadin (Java).</li>
-					<li>Création et maîtrise d'une base de données (Postgre SQL, MySQL).</li>
-					<li>Langues pratiquées : Anglais (courant, année 2014 passée en Nouvelle Zélande) et Espagnol (lu, écrit, parlé).</li>
-					<li>Un an et demi d'expérience en méthode Agile (Scrum).</li>
+		    	<h2>Compétences spécifiques</h2>
+		    	<ul>
+			    	<?php
+					$reponse = $bdd->query('SELECT content FROM competences ORDER BY `order` ASC');
+					$competences = $reponse->fetchAll();
+					foreach ($competences as $comp) {
+					?>
+				       <li><?php echo$comp['content'] ?></li>
+			    	<?php } ?>
 		    	</ul>
 		 	</div>
 		    <div id="experience" class="tab-pane fade">
 		        <h2>Expérience professionnelle</h2>
-		        <p><span class="period">Fév. 2015 – Aujourd'hui : </span>Développeur à Pentila à Chambéry : développement d'un projet permettant la consultation et la gestion de référentiels de compétences. <br/> Technologies utilisées : <strong> J2E avec le framework Vaadin, CSS, SVN. Méthode de travail Agile (Scrum).</strong></p>
-				<p><span class="period">Sept. 2014 – Nov. 2014 : </span>Développeur à AMS (Automated Music System) à Wellington, Nouvelle Zélande: développement du catalogue en ligne des musiques avec du responsive design pour l'accès mobile et tablette. <br/> Technologies utilisées : <strong> PHP, HTML, CSS, Jquery.</strong></p>
-				<p><span class="period">Sept. 2012 – Nov. 2013 : </span>Apprenti à Orange à Lyon: développement d'une fonctionnalité de renvoi du code d'accès pour l'application de suivi des commandes des clients. <br/> Technologies utilisées : <strong> J2E avec le framework wicket, HTML, CSS, JQuery, Selenium, SVN. Méthode de travail Agile (Scrum).</strong></p>
-				<p><span class="period">2 Avril – 30 Juin 2012 : </span>Stage de trois mois au Centre d'Études de la Neige de Météo-France à Grenoble: conception d'un site internet pour présenter les informations météorologiques de chaque hiver. <br/> Technologies utilisées : <strong> PHP avec le framework Symfony2, HTML, CSS, Jquery.</strong></p>
+		        <?php
+				$reponse = $bdd->query('SELECT * FROM experiences ORDER BY `order` ASC');
+				$experiences = $reponse->fetchAll();
+				foreach ($experiences as $exp) {
+				?>
+			       <p><span class="period"><?php echo$exp['dates'] ?></span><?php echo$exp['infos'] ?><br/><?php echo$exp['description'] ?><br/>Technologies utilisées : <strong><?php echo$exp['technologies'] ?></strong></p>
+		    	<?php } ?>
 		    </div>
 		    <div id="interests" class="tab-pane fade">
 		        <h2>Centres d'intérêts et divers</h2>
 		        <p>Badminton en compétition. 
-		        	<br/>Encadrement de jeunes à la pratique du badminton (2009).
-		        	<br/>Musique, sport, , les récits fantastiques, les tours de magies, les jeux de société.
-		        	<br/>Voyages : Irlande, Portugual, Canada, Nouvelle Zélande, Suisse, Allemagne, Suède.
-		        	<br/> Projets personnels : Site de voyage.
+		        	<br/><br/>Encadrement de jeunes à la pratique du badminton (2009).
+		        	<br/><br/>Musique, sport, , les récits fantastiques, les tours de magies, les jeux de société.
+		        	<br/><br/>Voyages : Irlande, Portugual, Canada, Nouvelle Zélande, Suisse, Allemagne, Suède.
+		        	<br/><br/> Projets personnels :
+		        	<?php
+					$reponse = $bdd->query('SELECT * FROM projets p WHERE p.type="Personnel"');
+					$projets = $reponse->fetchAll();
+
+					foreach ($projets as $projet) {
+						echo $projet["nom"].", ";
+					}
+					?>
 		        </p>
 		    </div>
 		</div>

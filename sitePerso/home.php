@@ -1,5 +1,5 @@
 <div class="container">
-	<div id="homeContent" class="row col-xs-12 col-md-10 col-md-offset-1 sectionContent">
+	<div id="homeContent" class="col-xs-12 col-md-10 col-md-offset-1 sectionContent">
 		 <!-- Hearder -->
 		<div id="header">
 			<div id="headerImg" class="col-xs-4"> </div>

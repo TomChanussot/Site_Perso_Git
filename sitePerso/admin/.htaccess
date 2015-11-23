@@ -1,0 +1,4 @@
+AuthName "Page d'administration protégée"
+AuthType Basic
+AuthUserFile "C:\Users\Tom\Desktop\Tom\Projets perso\Site_perso_Git\sitePerso\admin\.htpasswd"
+Require valid-user

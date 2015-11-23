@@ -17,16 +17,16 @@
         
 		<div id="miniMenu">		
 			<div id="miniMenuItemHome">
-				<h2>Home</h2>
+				<img class="morphy2" src="resources/images/home_icon.png" alt="home icon"/>
 			</div>
 			<div id="miniMenuItemAbout">
-				<h2>A propos</h2>
+				<img class="morphy2" src="resources/images/about_icon.png" alt="about icon"/>
 			</div>
 			<div id="miniMenuItemCv">
-				<h2>CV</h2>
+				<img class="morphy2" src="resources/images/CV_icon.png" alt="cv icon"/>
 			</div>	
 			<div id="miniMenuItemProjects">
-				<h2>Projets</h2>
+				<img class="morphy2" src="resources/images/project_icon.png" alt="projects icon"/>
 			</div>	
 		</div>
 

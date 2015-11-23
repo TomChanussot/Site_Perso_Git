@@ -1,5 +1,11 @@
 $(document).ready(function() {
-	 $('#fullpage').fullpage({
+
+	// redirection si width de l'écran trop basse
+	if ($(window).width() < 600){
+		window.location.href = "index_site_mobile.php"
+	}
+
+	$('#fullpage').fullpage({
     	anchors:['Home', 'About', 'Cv', 'Projects'],
 
     	paddingTop: '20px',
@@ -70,4 +76,6 @@ $(document).ready(function() {
 	$('#miniMenuItemProjects').click(function() {
 		$.fn.fullpage.moveTo(4);
 	});
+
+
 });
